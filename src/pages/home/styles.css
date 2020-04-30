@@ -1,0 +1,10 @@
+.card{
+    width: 18rem !important;
+    height: 14rem;
+    background-color:  #FFF !important;
+    margin:20px;
+    
+}
+.card:hover{
+    background-color: #8326C8 !important;
+}
