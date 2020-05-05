@@ -2,11 +2,12 @@ import React from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { FiEdit, FiArrowDown, FiFileMinus, FiFilePlus } from 'react-icons/fi';
+import { FiEdit, FiArrowDown, FiFileMinus, FiFilePlus, FiLink } from 'react-icons/fi';
 
 export default function Home() {
     return (
         <div>
+            
             <Container >
                 <Row>
                     <Col md={{ span: 4, offset: 4 }}>
@@ -41,7 +42,7 @@ export default function Home() {
                             </Card.Body>
                         </Card>
                     </Link>
-                    <Link className="link" to="https://google.com.br">
+                    <Link className="link" to="dividir-pdf">
                         <Card border="primary">
                             <Card.Header><FiFileMinus className="card-icon" size={25} /></Card.Header>
                             <Card.Body>
@@ -59,6 +60,17 @@ export default function Home() {
                                 <Card.Title>Juntar PDF</Card.Title>
                                 <Card.Text>
                                     Concatenar vários arquivos PDF formando um só.
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Link>
+                    <Link className="link" to="paginar-pdf">
+                        <Card border="primary">
+                            <Card.Header><FiLink className="card-icon" size={25} /></Card.Header>
+                            <Card.Body>
+                                <Card.Title>Paginar PDF</Card.Title>
+                                <Card.Text>
+                                    Inserir números de pagina em um pdf existente.
                                 </Card.Text>
                             </Card.Body>
                         </Card>

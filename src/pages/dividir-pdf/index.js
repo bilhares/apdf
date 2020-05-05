@@ -4,37 +4,20 @@ import './styles.css';
 import api from '../../services/api';
 import Loading from '../loading';
 
-
-
-export default function Juntar() {
+export default function Dividir() {
 
     const [arquivos, setArquivos] = useState([]);
-    const [pdf, setPdf] = useState('');
     const [loading, setLoading] = useState(false);
 
     async function getFiles(files) {
-        setArquivos(arquivos.concat(Array.from(files)));
+        setArquivos(Array.from(files));
     }
 
-    function limparLista() {
-        setArquivos([]);
-        setPdf('');
-    }
-    async function montarJson(callback) {
-        let data = [];
-        for (var i = 0; i < arquivos.length; i++) {
-            let base64 = await toBase64(arquivos[i]);
-            data.push({ file: base64.split(',')[1] });
-        }
-        return callback(data);
-    }
-
-    async function juntarPdfs() {
+    async function dividirPdf() {
         setLoading(true);
-        montarJson(async (data) => {
-            let resp = await api.post('api/tools/merge-pdf', data);
-            // setPdf('data:application/pdf;base64,' + resp.data.file);
-            download('merge.pdf', resp.data.file);
+        let base64 = await toBase64(arquivos[0]);
+        await api.post('api/tools/split-pdf', { file: base64.split(',')[1] }).then(response => {
+            download('splited.zip', response.data.file);
             setLoading(false);
         })
     }
@@ -46,7 +29,6 @@ export default function Juntar() {
         reader.onerror = error => reject(error);
     });
 
-    
     function download(filename, data) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;base64,' + data);
@@ -73,7 +55,6 @@ export default function Juntar() {
                             <Form.File
                                 id="custom-file"
                                 label="Custom file input"
-                                multiple
                                 custom
                                 accept=".pdf"
                                 onChange={(e) => getFiles(e.target.files)}
@@ -81,18 +62,12 @@ export default function Juntar() {
                         </Form>
                     </Col>
                 </Row>
-
-                <Button onClick={limparLista} variant="secondary">Limpar</Button>
-                <Button variant="primary" onClick={juntarPdfs}>Juntar</Button>
+                <Button variant="primary" onClick={dividirPdf}>Dividir</Button>
                 {
                     arquivos.map((a, i) => (
                         <p key={i}>{a.name}</p>
                     ))
                 }
-                <div style={{ display: pdf ? "block" : "none" }}>
-                    <iframe className="framePdf" src={pdf} />
-                </div>
-
             </Container>
         </div>
     );

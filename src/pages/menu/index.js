@@ -15,13 +15,13 @@ export default function Menu() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link > <Link to="/"> Home </Link> </Nav.Link>
-                        <Nav.Link href="#link">Info</Nav.Link>
+                        <Nav.Link as={Link} to="/" > Home</Nav.Link>
+                        <Nav.Link >Info</Nav.Link>
                         <NavDropdown title="Ferramentas" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Assinar PDF</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Comprimir PDF</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Dividir PDF</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">Juntar PDF</NavDropdown.Item>
+                            <NavDropdown.Item  as={Link} to="/">Assinar PDF</NavDropdown.Item>
+                            <NavDropdown.Item  as={Link} to="/">Comprimir PDF</NavDropdown.Item>
+                            <NavDropdown.Item  as={Link} to="/">Dividir PDF</NavDropdown.Item>
+                            <NavDropdown.Item   as={Link} to="/">Juntar PDF</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
