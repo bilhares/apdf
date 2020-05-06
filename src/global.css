@@ -6,10 +6,11 @@
     transition: opacity 0.2s;
 }
 
-.link{
-}
-
 .link:hover{
     opacity: 0.8;
     color: #FFF;
+}
+
+body{
+    background-color: #E1E1E1 !important;
 }

@@ -14,7 +14,7 @@ export default function Loading() {
                     color='yellow'
                 />
                 <span className='message'>
-                    CARREGANDO
+                    LOADING
             </span>
             </div>
         </div>
